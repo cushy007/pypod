@@ -4,7 +4,10 @@ import sys
 import time
 import mido
 import argparse
-import line6
+try:
+	import line6
+except ImportError:
+	import pypod.line6
 import logging
 import json
 import os
