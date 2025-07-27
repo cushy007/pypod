@@ -111,7 +111,7 @@ class pyPOD:
         highnibble = in_byte >> 4
         lownibble  = in_byte & 0b1111
         return highnibble, lownibble
-    
+
     def dump_editbuffer(self):
         self.logger.info("dumping edit bufer")
         msg = mido.Message('sysex', data=[0x00, 0x01, 0x0c, 0x01, 0x00, 0x01])
@@ -202,7 +202,7 @@ class pyPOD:
     def dump_raw(self, **kwargs):
         if 'filename' in kwargs:
             # if filename is given, dump to syx file:
-            # update: create sysex-message so we don't have to manually add the 
+            # update: create sysex-message so we don't have to manually add the
             # first and last byte
             message = []
             for m in self.msg_bytes[:]:
@@ -211,7 +211,7 @@ class pyPOD:
                 message.append(l)
             msg = mido.Message('sysex', data=message)
             mido.write_syx_file(kwargs['filename'], (msg,))
-        else:    
+        else:
             print(*self.msg_bytes)
 
     def dump_hex(self):
@@ -243,12 +243,12 @@ class pyPOD:
         msg.control = control
         msg.value = value
         self.outport.send(msg)
-    
+
     def send_pc(self, program):
         msg = mido.Message('program_change')
         msg.program = program
         self.outport.send(msg)
-    
+
     def get_midioutputs(self):
         # helper function for the gui app
         return mido.get_output_names()
